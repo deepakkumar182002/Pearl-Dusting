@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import useStore from '../store/useStore';
@@ -318,8 +319,12 @@ const styles = `
 
 export default function BookingPage() {
   const { services, fetchServices } = useStore();
+  const [searchParams] = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Pre-fill service from URL query param (?service=Home+Deep+Cleaning)
+  const preSelectedService = searchParams.get('service') || '';
 
   const [form, setForm] = useState({
     fullName: '',
@@ -327,13 +332,20 @@ export default function BookingPage() {
     phone: '',
     address: '',
     area: '',
-    serviceTitle: '',
+    serviceTitle: preSelectedService,
     bookingDate: '',
     bookingTime: '',
     cleaningType: 'Standard',
     notes: '',
     staffGender: '',
   });
+
+  // If URL param changes after mount, update form
+  useEffect(() => {
+    if (preSelectedService) {
+      setForm((f) => ({ ...f, serviceTitle: preSelectedService }));
+    }
+  }, [preSelectedService]);
 
   useEffect(() => {
     fetchServices();

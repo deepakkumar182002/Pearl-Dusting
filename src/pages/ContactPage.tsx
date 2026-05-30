@@ -114,6 +114,8 @@
 
 
 import { useState } from "react";
+import useStore from "../store/useStore";
+import toast from "react-hot-toast";
 
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
@@ -172,18 +174,33 @@ const styles = `
 `;
 
 export default function ContactPage() {
+  const { addContact } = useStore() as any;
   const [form, setForm] = useState({ name:"", email:"", phone:"", message:"" });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) return;
+    if (!form.name || !form.email || !form.message) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
     setLoading(true);
-    await new Promise(r => setTimeout(r, 900));
-    setSent(true);
-    setForm({ name:"", email:"", phone:"", message:"" });
-    setLoading(false);
+    try {
+      await addContact({
+        name: form.name,
+        email: form.email,
+        phone: form.phone || undefined,
+        message: form.message,
+      });
+      setSent(true);
+      setForm({ name:"", email:"", phone:"", message:"" });
+      toast.success("Message sent! We'll get back to you shortly. ✅");
+    } catch {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const infoCards = [

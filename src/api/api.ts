@@ -28,6 +28,7 @@ api.interceptors.response.use(
 // ── Services ──────────────────────────────────────────────────────────────────
 export const serviceApi = {
   getAll: () => api.get('/services').then((r) => r.data),
+  getAllAdmin: () => api.get('/services/all').then((r) => r.data),
   getById: (id: string) => api.get(`/services/${id}`).then((r) => r.data),
   create: (data: object) => api.post('/services', data).then((r) => r.data),
   update: (id: string, data: object) => api.put(`/services/${id}`, data).then((r) => r.data),
@@ -62,6 +63,7 @@ export const reviewApi = {
   getApproved: () => api.get('/reviews').then((r) => r.data),
   getAll: () => api.get('/reviews/all').then((r) => r.data),
   create: (data: object) => api.post('/reviews', data).then((r) => r.data),
+  update: (id: string, data: object) => api.put(`/reviews/${id}`, data).then((r) => r.data),
   toggleApproval: (id: string) => api.put(`/reviews/${id}/approve`).then((r) => r.data),
   delete: (id: string) => api.delete(`/reviews/${id}`).then((r) => r.data),
 };

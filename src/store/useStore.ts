@@ -22,6 +22,7 @@ interface AppState {
   loading: boolean;
   error: string | null;
   fetchServices: () => Promise<void>;
+  fetchAllServices: () => Promise<void>;
   addService: (service: Omit<Service, 'id'>) => Promise<void>;
   updateService: (id: string, updates: Partial<Service>) => Promise<void>;
   deleteService: (id: string) => Promise<void>;
@@ -39,6 +40,7 @@ interface AppState {
   fetchReviews: () => Promise<void>;
   fetchAllReviews: () => Promise<void>;
   addReview: (review: object) => Promise<void>;
+  updateReview: (id: string, updates: object) => Promise<void>;
   toggleReviewApproval: (id: string) => Promise<void>;
   deleteReview: (id: string) => Promise<void>;
 
@@ -136,6 +138,17 @@ const useStore = create<AppState>((set, get) => ({
     }
   },
 
+  fetchAllServices: async () => {
+    try {
+      set({ loading: true });
+      const data = await serviceApi.getAllAdmin();
+      const services = data.map(normalize);
+      set({ services, loading: false });
+    } catch (err: unknown) {
+      set({ loading: false, error: err instanceof Error ? err.message : 'Failed to fetch services' });
+    }
+  },
+
   addService: async (serviceData) => {
     const data = await serviceApi.create(serviceData);
     set((state) => ({ services: [normalize(data), ...state.services] }));
@@ -215,6 +228,13 @@ const useStore = create<AppState>((set, get) => ({
 
   toggleReviewApproval: async (id) => {
     const data = await reviewApi.toggleApproval(id);
+    set((state) => ({
+      reviews: state.reviews.map((r) => (r.id === id || r._id === id) ? normalize(data) : r),
+    }));
+  },
+
+  updateReview: async (id, updates) => {
+    const data = await reviewApi.update(id, updates);
     set((state) => ({
       reviews: state.reviews.map((r) => (r.id === id || r._id === id) ? normalize(data) : r),
     }));

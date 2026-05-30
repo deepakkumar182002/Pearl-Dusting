@@ -20,7 +20,6 @@ const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminBookings = lazy(() => import('./pages/admin/AdminBookings'));
 const AdminServices = lazy(() => import('./pages/admin/AdminServices'));
-const AdminUsers = lazy(() => import('./pages/admin/AdminUsers'));
 const AdminReviews = lazy(() => import('./pages/admin/AdminReviews'));
 const AdminContacts = lazy(() => import('./pages/admin/AdminContacts'));
 
@@ -66,7 +65,6 @@ function App() {
             <Route index element={<AdminDashboard />} />
             <Route path="bookings" element={<AdminBookings />} />
             <Route path="services" element={<AdminServices />} />
-            <Route path="users" element={<AdminUsers />} />
             <Route path="reviews" element={<AdminReviews />} />
             <Route path="contacts" element={<AdminContacts />} />
           </Route>

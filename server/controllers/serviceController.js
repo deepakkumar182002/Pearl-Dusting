@@ -1,9 +1,19 @@
 import Service from '../models/Service.js';
 
-// GET /api/services - public
+// GET /api/services - public (active only)
 export const getServices = async (req, res) => {
   try {
     const services = await Service.find({ isActive: true }).sort({ createdAt: -1 });
+    res.json(services);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// GET /api/services/all - admin (all services, including inactive)
+export const getAllServices = async (req, res) => {
+  try {
+    const services = await Service.find().sort({ createdAt: -1 });
     res.json(services);
   } catch (error) {
     res.status(500).json({ message: error.message });

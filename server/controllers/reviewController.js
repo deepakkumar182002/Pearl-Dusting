@@ -36,6 +36,21 @@ export const createReview = async (req, res) => {
   }
 };
 
+// PUT /api/reviews/:id - admin (edit review fields)
+export const updateReview = async (req, res) => {
+  try {
+    const review = await Review.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true, runValidators: true }
+    );
+    if (!review) return res.status(404).json({ message: 'Review not found' });
+    res.json(review);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 // PUT /api/reviews/:id/approve - admin
 export const toggleApproval = async (req, res) => {
   try {

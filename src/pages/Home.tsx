@@ -125,6 +125,7 @@ const styles = `
   .hp-rev-grid { grid-template-columns:1fr 1fr; }
 }
 @media(max-width:768px){
+  .hp-hero { padding:80px 24px 60px; }
   .hp-band-inner { grid-template-columns:repeat(2,1fr); }
   .hp-svc-grid  { grid-template-columns:1fr; }
   .hp-feat-grid { grid-template-columns:1fr; }
@@ -134,8 +135,9 @@ const styles = `
   .hp-rev-grid { grid-template-columns:1fr; }
 }
 @media(max-width:480px){
+  .hp-hero { padding:130px 24px 60px; }
   .hp-band-inner { grid-template-columns:1fr 1fr; gap:12px; }
-  .hp-hero,.hp-services,.hp-features,.hp-faq,.hp-cta { padding:52px 18px; }
+  .hp-services,.hp-features,.hp-faq,.hp-cta { padding:52px 18px; }
 }
 `;
 

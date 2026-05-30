@@ -1,16 +1,18 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import useStore from "../store/useStore";
 
 const categories = ["All", "Residential", "Commercial", "Specialized", "Premium"];
 
-// Demo services data - replace with your useStore() hook
-const demoServices = [
-  { id: 1, title: "Home Deep Cleaning", category: "Residential", description: "Complete deep cleaning for your home", shortDescription: "Thorough top-to-bottom cleaning of your entire home with eco-friendly products.", features: ["All rooms covered", "Eco-friendly products", "Trained professionals"], price: 49, rating: 4.9, reviewCount: 189, duration: "3-4 hrs", popular: true, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" },
-  { id: 2, title: "Office Cleaning", category: "Commercial", description: "Professional office cleaning", shortDescription: "Keep your workspace spotless and hygienic with our expert commercial cleaning team.", features: ["Desks & workstations", "Pantry & restrooms", "Glass & windows"], price: 79, rating: 4.8, reviewCount: 203, duration: "2-3 hrs", popular: false, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" },
-  { id: 3, title: "Bathroom Cleaning", category: "Specialized", description: "Deep bathroom sanitization", shortDescription: "Deep bathroom sanitization and scrubbing with germ removal treatment.", features: ["Germ & stain removal", "Tiles & grout cleaning", "Fixture polishing"], price: 29, rating: 4.7, reviewCount: 176, duration: "1-2 hrs", popular: true, image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" },
-  { id: 4, title: "Kitchen Cleaning", category: "Specialized", description: "Complete kitchen degreasing", shortDescription: "Complete kitchen deep cleaning & degreasing including appliances and cabinets.", features: ["Oil & grease removal", "Appliance cleaning", "Cabinet wipe-down"], price: 39, rating: 4.8, reviewCount: 142, duration: "2-3 hrs", popular: false, image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" },
-  { id: 5, title: "Sofa Steam Cleaning", category: "Specialized", description: "Steam cleaning for sofas", shortDescription: "Professional steam cleaning for sofas and upholstery to restore like-new freshness.", features: ["Steam deep clean", "Stain removal", "Odor elimination"], price: 59, rating: 4.9, reviewCount: 98, duration: "2-3 hrs", popular: true, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" },
-  { id: 6, title: "Premium Villa Cleaning", category: "Premium", description: "Luxury villa complete cleaning", shortDescription: "White-glove full-service cleaning for luxury villas and large residential properties.", features: ["Full property coverage", "Premium products", "Dedicated team"], price: 149, rating: 5.0, reviewCount: 54, duration: "5-8 hrs", popular: false, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" },
-];
+// Fallback demo services (shown while backend loads)
+// const demoServices = [
+//   { id: "d1", title: "Home Deep Cleaning", category: "Residential", description: "Complete deep cleaning for your home", shortDescription: "Thorough top-to-bottom cleaning of your entire home with eco-friendly products.", features: ["All rooms covered", "Eco-friendly products", "Trained professionals"], price: 3999, rating: 4.9, reviewCount: 189, duration: "3-4 hrs", popular: true, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" },
+//   { id: "d2", title: "Office Cleaning", category: "Commercial", description: "Professional office cleaning", shortDescription: "Keep your workspace spotless and hygienic with our expert commercial cleaning team.", features: ["Desks & workstations", "Pantry & restrooms", "Glass & windows"], price: 6499, rating: 4.8, reviewCount: 203, duration: "2-3 hrs", popular: false, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" },
+//   { id: "d3", title: "Bathroom Cleaning", category: "Specialized", description: "Deep bathroom sanitization", shortDescription: "Deep bathroom sanitization and scrubbing with germ removal treatment.", features: ["Germ & stain removal", "Tiles & grout cleaning", "Fixture polishing"], price: 2499, rating: 4.7, reviewCount: 176, duration: "1-2 hrs", popular: true, image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" },
+//   { id: "d4", title: "Kitchen Cleaning", category: "Specialized", description: "Complete kitchen degreasing", shortDescription: "Complete kitchen deep cleaning & degreasing including appliances and cabinets.", features: ["Oil & grease removal", "Appliance cleaning", "Cabinet wipe-down"], price: 3199, rating: 4.8, reviewCount: 142, duration: "2-3 hrs", popular: false, image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" },
+//   { id: "d5", title: "Sofa Steam Cleaning", category: "Specialized", description: "Steam cleaning for sofas", shortDescription: "Professional steam cleaning for sofas and upholstery to restore like-new freshness.", features: ["Steam deep clean", "Stain removal", "Odor elimination"], price: 4799, rating: 4.9, reviewCount: 98, duration: "2-3 hrs", popular: true, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" },
+//   { id: "d6", title: "Premium Villa Cleaning", category: "Premium", description: "Luxury villa complete cleaning", shortDescription: "White-glove full-service cleaning for luxury villas and large residential properties.", features: ["Full property coverage", "Premium products", "Dedicated team"], price: 11999, rating: 5.0, reviewCount: 54, duration: "5-8 hrs", popular: false, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" },
+// ];
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
@@ -315,29 +317,21 @@ const styles = `
     font-size: 0.875rem;
     color: #64748b;
     line-height: 1.65;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     flex: 0;
   }
-  .sp-features {
-    list-style: none;
-    padding: 0; margin: 0 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
+  .sp-card-desc.secondary {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-top: 6px;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-  .sp-feature {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.83rem;
-    color: #475569;
-  }
-  .sp-feature-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #06b6d4, #3b82f6);
-    flex-shrink: 0;
-  }
+
+
   .sp-card-footer {
     margin-top: auto;
     padding-top: 18px;
@@ -409,9 +403,17 @@ const styles = `
 `;
 
 export default function ServicesPage() {
-  // Replace demoServices with: const { services, openBookingModal } = useStore();
-  const services = demoServices;
-  const openBookingModal = (service) => alert(`Booking: ${service.title}`);
+  const { services: storeServices, fetchServices } = useStore();
+  const navigate = useNavigate();
+
+  useEffect(() => { fetchServices(); }, []);
+
+  // Fall back to demo data if API hasn't loaded yet
+  const services = storeServices.length > 0 ? storeServices : demoServices as any[];
+
+  const handleBookNow = (service: any) => {
+    navigate(`/booking?service=${encodeURIComponent(service.title)}`);
+  };
 
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
@@ -501,10 +503,10 @@ export default function ServicesPage() {
                 <div
                   key={service.id}
                   className="sp-card"
-                  onClick={() => openBookingModal(service)}
+                  onClick={() => handleBookNow(service)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && openBookingModal(service)}
+                  onKeyDown={(e) => e.key === "Enter" && handleBookNow(service)}
                 >
                   {/* Image */}
                   <div className="sp-img-wrap">
@@ -528,23 +530,18 @@ export default function ServicesPage() {
                   <div className="sp-card-body">
                     <span className="sp-cat-tag">{service.category}</span>
                     <h2 className="sp-card-title">{service.title}</h2>
-                    <p className="sp-card-desc">{service.shortDescription}</p>
-                    <ul className="sp-features">
-                      {service.features.slice(0, 3).map((f, i) => (
-                        <li key={i} className="sp-feature">
-                          <span className="sp-feature-dot" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="sp-card-desc">{service.description}</p>
+                    {/* {service.description && (
+                      <p className="sp-card-desc secondary">{service.description}</p>
+                    )} */}
                     <div className="sp-card-footer">
                       <div>
-                        <div className="sp-price-num">₹{service.price * 80}</div>
+                        <div className="sp-price-num">₹{service.price}</div>
                         <div className="sp-price-label">Starting price</div>
                       </div>
                       <button
                         className="sp-book-btn"
-                        onClick={(e) => { e.stopPropagation(); openBookingModal(service); }}
+                        onClick={(e) => { e.stopPropagation(); handleBookNow(service); }}
                       >
                         Book Now →
                       </button>

@@ -277,7 +277,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* TEAM */}
+        {/* TEAM
         <section className="ap-team">
           <div className="ap-team-inner">
             <div className="ap-section-head">
@@ -295,7 +295,7 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
     </>
   );
