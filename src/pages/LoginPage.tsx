@@ -121,6 +121,7 @@ export default function LoginPage() {
                   onChange={e => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
+                  autoComplete="current-password"
                   style={{ paddingRight: '46px' }}
                 />
                 <button type="button" className="lp-eye-btn" onClick={() => setShowPw(!showPw)}>
