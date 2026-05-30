@@ -14,8 +14,7 @@ const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
-const RegisterPage = lazy(() => import('./pages/RegisterPage'));
-const UserDashboard = lazy(() => import('./pages/UserDashboard'));
+const BookingPage = lazy(() => import('./pages/BookingPage'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
@@ -56,9 +55,8 @@ function App() {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/booking" element={<BookingPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/dashboard" element={<UserDashboard />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsConditions />} />
           </Route>

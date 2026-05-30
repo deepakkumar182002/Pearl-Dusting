@@ -1,4 +1,5 @@
 import ContactMessage from '../models/ContactMessage.js';
+import { sendContactConfirmation, sendContactAdminNotification } from '../config/mailer.js';
 
 // GET /api/contacts - admin
 export const getAllContacts = async (req, res) => {
@@ -19,6 +20,13 @@ export const createContact = async (req, res) => {
     }
     const contact = await ContactMessage.create({ name, email, phone: phone || '', message });
     res.status(201).json(contact);
+
+    // Send emails asynchronously
+    Promise.all([
+      sendContactConfirmation(contact),
+      sendContactAdminNotification(contact),
+    ]).catch(err => console.error('📧 Contact email error:', err.message));
+
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

@@ -1,111 +1,8 @@
-// import { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { motion } from 'framer-motion';
-// import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
-// import { MdCleaningServices } from 'react-icons/md';
-// import toast from 'react-hot-toast';
-// import useStore from '../store/useStore';
-
-// export default function RegisterPage() {
-//   const [name, setName] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [confirmPassword, setConfirmPassword] = useState('');
-//   const [showPassword, setShowPassword] = useState(false);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const { register } = useStore();
-//   const navigate = useNavigate();
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     if (!name || !email || !password) { toast.error('Please fill all fields'); return; }
-//     if (password !== confirmPassword) { toast.error('Passwords do not match'); return; }
-//     if (password.length < 6) { toast.error('Password must be at least 6 characters'); return; }
-//     setIsLoading(true);
-//     try {
-//       const success = await register(name, email, password);
-//       if (success) {
-//         toast.success('Account created successfully!');
-//         navigate('/dashboard');
-//       } else {
-//         toast.error('Registration failed. Email may already be in use.');
-//       }
-//     } catch {
-//       toast.error('Registration failed. Please try again.');
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="pt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 py-10 sm:py-12 px-4 sm:px-6">
-//       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
-//         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-//           <div className="text-center mb-8">
-//             <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-//               <MdCleaningServices className="text-white text-2xl" />
-//             </div>
-//             <h1 className="text-2xl font-bold text-gray-900">Create Account</h1>
-//             <p className="text-sm text-gray-500 mt-1">Join SparkleClean Pro today</p>
-//           </div>
-
-//           <form onSubmit={handleSubmit} className="space-y-4">
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-//               <div className="relative">
-//                 <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//                 <input value={name} onChange={e => setName(e.target.value)} placeholder="John Doe" className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm" />
-//               </div>
-//             </div>
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-//               <div className="relative">
-//                 <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm" />
-//               </div>
-//             </div>
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-//               <div className="relative">
-//                 <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//                 <input type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} placeholder="Min. 6 characters" className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm" />
-//                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-//                   {showPassword ? <FiEyeOff /> : <FiEye />}
-//                 </button>
-//               </div>
-//             </div>
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-//               <div className="relative">
-//                 <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//                 <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirm password" className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm" />
-//               </div>
-//             </div>
-//             <button
-//               type="submit"
-//               disabled={isLoading}
-//               className="w-full py-3.5 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary-500/25 transition-all text-sm disabled:opacity-70 disabled:cursor-not-allowed"
-//             >
-//               {isLoading ? 'Creating Account...' : 'Create Account'}
-//             </button>
-//           </form>
-
-//           <div className="mt-6 text-center">
-//             <p className="text-sm text-gray-500">
-//               Already have an account? <Link to="/login" className="text-primary-600 font-semibold hover:text-primary-700">Sign In</Link>
-//             </p>
-//           </div>
-//         </div>
-//       </motion.div>
-//     </div>
-//   );
-// }
-
-
-
-
-// at > /mnt/user-data/outputs/RegisterPage.jsx << 'EOF'
-import { useState } from "react";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
+import useStore from '../store/useStore';
 
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
@@ -123,7 +20,6 @@ const styles = `
 .rp-logo p  { font-size:.875rem; color:#64748b; margin:0; font-weight:300; }
 
 /* FORM */
-.rp-form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
 .rp-form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
 .rp-form-group label { font-family:'Syne',sans-serif; font-size:.77rem; font-weight:700; color:#334155; }
 .rp-input-wrap { position:relative; }
@@ -162,25 +58,16 @@ const styles = `
 .rp-signin a { color:#0891b2; font-weight:600; text-decoration:none; }
 .rp-signin a:hover { text-decoration:underline; }
 
-/* DIVIDER */
-.rp-divider { display:flex; align-items:center; gap:10px; margin:18px 0; }
-.rp-divider::before,.rp-divider::after { content:''; flex:1; height:1px; background:#e8eef4; }
-.rp-divider span { font-size:.75rem; color:#94a3b8; white-space:nowrap; }
-
-/* SUCCESS */
-.rp-success { background:#e0f7fa; border:1px solid #a5f3fc; border-radius:12px; padding:14px 18px; color:#0891b2; font-family:'Syne',sans-serif; font-weight:600; font-size:.875rem; text-align:center; margin-top:14px; }
-
 /* BENEFITS */
 .rp-benefits { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; justify-content:center; }
 .rp-benefit { display:flex; align-items:center; gap:5px; font-size:.76rem; color:#64748b; background:#f8fafc; border:1px solid #e8eef4; border-radius:50px; padding:4px 12px; }
 
 @media(max-width:520px){
   .rp-card { padding:32px 20px; border-radius:22px; }
-  .rp-form-row { grid-template-columns:1fr; }
 }
 `;
 
-function getStrength(pw) {
+function getStrength(pw: string) {
   if (!pw) return 0;
   let score = 0;
   if (pw.length >= 6)  score++;
@@ -190,43 +77,61 @@ function getStrength(pw) {
 }
 
 export default function RegisterPage() {
-  const [form, setForm] = useState({ name:"", email:"", password:"", confirmPassword:"" });
+  const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [showPw, setShowPw] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const { register } = useStore();
+  const navigate = useNavigate();
 
-  const set = (k, v) => { setForm(f=>({...f,[k]:v})); setErrors(e=>({...e,[k]:""})); };
+  const setField = (k: string, v: string) => {
+    setFormData(f => ({ ...f, [k]: v }));
+    setErrors(e => ({ ...e, [k]: '' }));
+  };
 
   const validate = () => {
-    const e = {};
-    if (!form.name.trim())            e.name = "Name is required";
-    if (!form.email.trim())           e.email = "Email is required";
-    if (form.password.length < 6)     e.password = "At least 6 characters";
-    if (form.password !== form.confirmPassword) e.confirmPassword = "Passwords do not match";
-    if (!agreed)                      e.terms = "Please accept the terms";
+    const e: Record<string, string> = {};
+    if (!formData.name.trim())                          e.name = 'Name is required';
+    if (!formData.email.trim())                         e.email = 'Email is required';
+    if (formData.password.length < 6)                   e.password = 'At least 6 characters';
+    if (formData.password !== formData.confirmPassword) e.confirmPassword = 'Passwords do not match';
+    if (!agreed)                                        e.terms = 'Please accept the terms';
     return e;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setLoading(true);
-    await new Promise(r => setTimeout(r, 900));
-    setLoading(false);
-    setSuccess(true);
+    try {
+      const success = await register(formData.name, formData.email, formData.password);
+      if (success) {
+        toast.success('Account created successfully!');
+        navigate('/dashboard');
+      } else {
+        toast.error('Registration failed. Email may already be in use.');
+      }
+    } catch {
+      toast.error('Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const strength = getStrength(form.password);
-  const strengthLabel = ["","Weak","Medium","Strong"][strength];
-  const strengthClass = ["","weak","medium","strong"][strength];
+  const strength = getStrength(formData.password);
+  const strengthLabel = ['', 'Weak', 'Medium', 'Strong'][strength];
+  const strengthClass = ['', 'weak', 'medium', 'strong'][strength];
 
   return (
     <>
       <style>{styles}</style>
-      <div className="rp-root">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="rp-root"
+      >
         <div className="rp-card">
 
           {/* Logo */}
@@ -238,7 +143,7 @@ export default function RegisterPage() {
 
           {/* Benefits */}
           <div className="rp-benefits">
-            {["✅ Free first booking","🌿 Eco-friendly","⚡ Same-day service"].map((b,i)=>(
+            {['✅ Free first booking', '🌿 Eco-friendly', '⚡ Same-day service'].map((b, i) => (
               <span className="rp-benefit" key={i}>{b}</span>
             ))}
           </div>
@@ -249,7 +154,12 @@ export default function RegisterPage() {
               <label>Full Name</label>
               <div className="rp-input-wrap">
                 <span className="rp-input-icon">👤</span>
-                <input className={errors.name?"error":""} value={form.name} onChange={e=>set("name",e.target.value)} placeholder="Rahul Sharma" />
+                <input
+                  className={errors.name ? 'error' : ''}
+                  value={formData.name}
+                  onChange={e => setField('name', e.target.value)}
+                  placeholder="Rahul Sharma"
+                />
               </div>
               {errors.name && <div className="rp-field-err">{errors.name}</div>}
             </div>
@@ -258,7 +168,13 @@ export default function RegisterPage() {
               <label>Email Address</label>
               <div className="rp-input-wrap">
                 <span className="rp-input-icon">✉️</span>
-                <input type="email" className={errors.email?"error":""} value={form.email} onChange={e=>set("email",e.target.value)} placeholder="you@example.com" />
+                <input
+                  type="email"
+                  className={errors.email ? 'error' : ''}
+                  value={formData.email}
+                  onChange={e => setField('email', e.target.value)}
+                  placeholder="you@example.com"
+                />
               </div>
               {errors.email && <div className="rp-field-err">{errors.email}</div>}
             </div>
@@ -267,14 +183,23 @@ export default function RegisterPage() {
               <label>Password</label>
               <div className="rp-input-wrap">
                 <span className="rp-input-icon">🔒</span>
-                <input type={showPw?"text":"password"} className={errors.password?"error":""} value={form.password} onChange={e=>set("password",e.target.value)} placeholder="Min. 6 characters" style={{paddingRight:"42px"}} />
-                <button type="button" className="rp-eye-btn" onClick={()=>setShowPw(!showPw)}>{showPw?"🙈":"👁️"}</button>
+                <input
+                  type={showPw ? 'text' : 'password'}
+                  className={errors.password ? 'error' : ''}
+                  value={formData.password}
+                  onChange={e => setField('password', e.target.value)}
+                  placeholder="Min. 6 characters"
+                  style={{ paddingRight: '42px' }}
+                />
+                <button type="button" className="rp-eye-btn" onClick={() => setShowPw(!showPw)}>
+                  {showPw ? '🙈' : '👁️'}
+                </button>
               </div>
-              {form.password && (
+              {formData.password && (
                 <div className="rp-strength">
                   <div className="rp-strength-bar">
-                    {[0,1,2].map(i=>(
-                      <div key={i} className={`rp-strength-seg${i < strength ? " "+strengthClass : ""}`} />
+                    {[0, 1, 2].map(i => (
+                      <div key={i} className={`rp-strength-seg${i < strength ? ' ' + strengthClass : ''}`} />
                     ))}
                   </div>
                   <div className="rp-strength-lbl">{strengthLabel} password</div>
@@ -283,34 +208,41 @@ export default function RegisterPage() {
               {errors.password && <div className="rp-field-err">{errors.password}</div>}
             </div>
 
-            <div className="rp-form-group" style={{marginBottom:"18px"}}>
+            <div className="rp-form-group" style={{ marginBottom: '18px' }}>
               <label>Confirm Password</label>
               <div className="rp-input-wrap">
                 <span className="rp-input-icon">🔒</span>
-                <input type="password" className={errors.confirmPassword?"error":""} value={form.confirmPassword} onChange={e=>set("confirmPassword",e.target.value)} placeholder="Repeat password" />
+                <input
+                  type="password"
+                  className={errors.confirmPassword ? 'error' : ''}
+                  value={formData.confirmPassword}
+                  onChange={e => setField('confirmPassword', e.target.value)}
+                  placeholder="Repeat password"
+                />
               </div>
               {errors.confirmPassword && <div className="rp-field-err">{errors.confirmPassword}</div>}
             </div>
 
             <label className="rp-terms">
-              <input type="checkbox" checked={agreed} onChange={e=>{ setAgreed(e.target.checked); setErrors(er=>({...er,terms:""})); }} />
-              <span>I agree to the <a href="/terms">Terms & Conditions</a> and <a href="/privacy">Privacy Policy</a></span>
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={e => { setAgreed(e.target.checked); setErrors(er => ({ ...er, terms: '' })); }}
+              />
+              <span>I agree to the <Link to="/terms">Terms &amp; Conditions</Link> and <Link to="/privacy">Privacy Policy</Link></span>
             </label>
-            {errors.terms && <div className="rp-field-err" style={{marginTop:"-10px",marginBottom:"10px"}}>{errors.terms}</div>}
+            {errors.terms && <div className="rp-field-err" style={{ marginTop: '-10px', marginBottom: '10px' }}>{errors.terms}</div>}
 
             <button type="submit" className="rp-submit" disabled={loading}>
-              {loading ? "Creating Account…" : "Create Account →"}
+              {loading ? 'Creating Account…' : 'Create Account →'}
             </button>
           </form>
 
-          {success && <div className="rp-success">🎉 Account created! Welcome to Pearl Dusting!</div>}
-
           <div className="rp-signin">
-            Already have an account? <a href="/login">Sign In</a>
+            Already have an account? <Link to="/login">Sign In</Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
-

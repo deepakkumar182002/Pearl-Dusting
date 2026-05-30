@@ -1,300 +1,5 @@
-// import { Link } from 'react-router-dom';
-// import { ArrowRight, BadgeCheck, ChevronDown, Leaf, Settings2, Shield, ShieldCheck, Star } from 'lucide-react';
-
-// const stats = [
-//   { value: '15,000+', label: 'Happy Clients' },
-//   { value: '12+', label: 'Years Experience' },
-//   { value: '50+', label: 'Expert Cleaners' },
-//   { value: '99.9%', label: 'Satisfaction' },
-// ];
-
-// const services = [
-//   {
-//     title: 'Residential Bliss',
-//     price: 'From $99',
-//     rating: '4.9',
-//     description:
-//       'Transform your home into a sanctuary of cleanliness. Comprehensive dusting, vacuuming, and sanitization using safe, eco-friendly products.',
-//   },
-//   {
-//     title: 'Corporate Shine',
-//     price: 'Custom Quote',
-//     rating: '5.0',
-//     description:
-//       'Elevate your workspace with reliable, thorough office cleaning for a healthy, productive environment.',
-//   },
-//   {
-//     title: 'Deep Restoration',
-//     price: 'From $199',
-//     rating: '4.8',
-//     description:
-//       'An intensive cleaning overhaul targeting grime, allergens, and neglected areas for a full reset.',
-//   },
-// ];
-
-// const featureCards = [
-//   {
-//     icon: Leaf,
-//     title: 'Eco-Friendly Products',
-//     description:
-//       'We use non-toxic, biodegradable cleaning solutions that are safe for your family, pets, and the planet.',
-//     className: 'md:col-span-2 bg-slate-800/50 rounded-2xl p-8 border border-slate-700 flex flex-col justify-center relative overflow-hidden',
-//     iconClassName: 'text-emerald-500 w-6 h-6',
-//     iconWrapClassName: 'w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-6',
-//   },
-//   {
-//     icon: BadgeCheck,
-//     title: 'Vetted Professionals',
-//     description: 'Every team member undergoes rigorous background checks and extensive training.',
-//     className: 'bg-slate-800/50 rounded-2xl p-8 border border-slate-700 flex flex-col justify-center relative overflow-hidden',
-//     iconClassName: 'text-indigo-400 w-5 h-5',
-//     iconWrapClassName: 'w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4',
-//   },
-//   {
-//     icon: Settings2,
-//     title: 'Customized Plans',
-//     description: 'Flexible scheduling and tailored checklists to meet your specific needs and budget.',
-//     className: 'bg-slate-800/50 rounded-2xl p-8 border border-slate-700 flex flex-col justify-center relative overflow-hidden',
-//     iconClassName: 'text-indigo-400 w-5 h-5',
-//     iconWrapClassName: 'w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4',
-//   },
-// ];
-
-// const faqs = [
-//   {
-//     question: 'What products do you use?',
-//     answer:
-//       'We use a curated selection of eco-friendly, non-toxic, and biodegradable cleaning solutions. They are effective against dirt and germs while being safe for children, pets, and the environment.',
-//   },
-//   {
-//     question: 'Are you insured?',
-//     answer:
-//       'Yes, SparkleClean Pro is fully insured and bonded. This provides peace of mind for both our clients and our staff.',
-//   },
-//   {
-//     question: 'How do I cancel?',
-//     answer:
-//       'We require a 24-hour notice for cancellations or rescheduling to avoid a cancellation fee. You can manage appointments through your account or by contacting support.',
-//   },
-// ];
-
-// function Hero() {
-//   return (
-//     <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-24 px-6 lg:px-8 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-//       <div className="lg:w-1/2 flex flex-col items-start gap-6 z-10">
-//         <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
-//           Spotless Spaces, Sustainable Soul.
-//         </h1>
-//         <p className="text-lg text-slate-500 max-w-xl font-medium">
-//           Experience the ultimate premium eco-friendly cleaning service for your home and office. We
-//           blend meticulous care with sustainable practices for a truly refreshing environment.
-//         </p>
-//         <div className="flex flex-wrap items-center gap-4 mt-2">
-//           <Link
-//             to="/services"
-//             className="bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold shadow-sm hover:bg-indigo-700 transition-colors flex items-center gap-2"
-//           >
-//             Book Your Clean
-//             <ArrowRight className="w-4 h-4" />
-//           </Link>
-//           <Link
-//             to="/services"
-//             className="bg-white border border-slate-200 text-slate-700 px-5 py-2.5 rounded-lg text-sm font-semibold shadow-sm hover:bg-slate-50 transition-colors"
-//           >
-//             Our Services
-//           </Link>
-//         </div>
-//         <div className="flex flex-wrap items-center gap-6 mt-6 pt-6 border-t border-slate-200 w-full">
-//           <div className="flex items-center gap-2">
-//             <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center">
-//               <ShieldCheck className="text-emerald-700 w-3 h-3" />
-//             </div>
-//             <span className="text-sm font-medium text-slate-600">Eco-Certified</span>
-//           </div>
-//           <div className="flex items-center gap-2">
-//             <div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
-//               <Shield className="text-indigo-700 w-3 h-3" />
-//             </div>
-//             <span className="text-sm font-medium text-slate-600">Insured & Bonded</span>
-//           </div>
-//         </div>
-//       </div>
-//       <div className="lg:w-1/2 relative w-full h-[400px] lg:h-[500px] bg-white p-2 rounded-2xl border border-slate-200 shadow-sm">
-//         <img
-//           alt="Living room"
-//           className="w-full h-full object-cover rounded-xl"
-//           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBoYOXwhVUNW8mMb0X_7Ifw1ECb24Vid0JUZUNuWi1sX2iF5XK2ZzgUO305FYnGLYwMszP0SPFlq9nDH8vZew-rf5Kyk2gJW3KNBCHvaapN43TWfCC7K5O6z1n0yx14z_DtB2268dCoSWCnBcx7J_x-rKsv4LibX5Vd9CN-MqODJAsSy0Kbb2Th6Y9FB_KJZmqiLBEqH2JBLkaGMhOvLTkbiANkLBRawvbnLVzS3r9_FbgvyQODD2trS6quEea50fFawxR75CdztZH"
-//         />
-//       </div>
-//     </section>
-//   );
-// }
-
-// function StatsSection() {
-//   return (
-//     <section className="bg-white border-y border-slate-200 py-12">
-//       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-//         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-//           {stats.map((stat) => (
-//             <div key={stat.label} className="bg-[#F8FAFC] p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
-//               <div className="text-3xl font-bold text-slate-900">{stat.value}</div>
-//               <div className="mt-2 text-xs font-bold text-slate-400 uppercase tracking-widest">{stat.label}</div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// function ServicesSection() {
-//   return (
-//     <section className="py-20 px-6 lg:px-8 max-w-7xl mx-auto" id="services">
-//       <div className="text-center mb-12 max-w-2xl mx-auto">
-//         <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Premium Services</h2>
-//         <p className="text-slate-500 font-medium">
-//           Tailored cleaning solutions for every environment, delivered with meticulous attention to detail.
-//         </p>
-//       </div>
-//       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//         {services.map((service) => (
-//           <div key={service.title} className="bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col overflow-hidden">
-//             <div className="relative h-48 overflow-hidden bg-slate-100">
-//               <img
-//                 alt={service.title}
-//                 className="w-full h-full object-cover"
-//                 src="https://images.pexels.com/photos/6197108/pexels-photo-6197108.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1400"
-//               />
-//               <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-xs font-bold text-slate-900 shadow-sm">
-//                 {service.price}
-//               </div>
-//             </div>
-//             <div className="p-6 flex flex-col grow">
-//               <div className="flex justify-between items-start mb-3">
-//                 <h3 className="font-bold text-slate-900 text-lg">{service.title}</h3>
-//                 <div className="flex items-center text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md">
-//                   <Star className="w-3 h-3 fill-emerald-600 mr-1" />
-//                   <span className="text-[10px] font-bold">{service.rating}</span>
-//                 </div>
-//               </div>
-//               <p className="text-sm text-slate-500 font-medium mb-6 grow">{service.description}</p>
-//               <button className="w-full bg-slate-50 border border-slate-200 text-slate-700 py-2.5 rounded-lg text-sm font-semibold hover:bg-slate-100 transition-colors">
-//                 Learn More
-//               </button>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
-
-// function FeaturesSection() {
-//   return (
-//     <section className="bg-[#0F172A] py-20">
-//       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-//         <div className="text-center mb-12">
-//           <h2 className="text-3xl font-bold text-white mb-4">The SparkleClean Difference</h2>
-//           <p className="text-slate-400 font-medium max-w-2xl mx-auto">We go beyond surface-level cleaning to deliver peace of mind.</p>
-//         </div>
-//         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//           {featureCards.map((feature) => (
-//             <div key={feature.title} className={feature.className}>
-//               <div className="relative z-10">
-//                 <div className={feature.iconWrapClassName}>
-//                   <feature.icon className={feature.iconClassName} />
-//                 </div>
-//                 <h3 className="font-bold text-white text-lg mb-2">{feature.title}</h3>
-//                 <p className="text-sm text-slate-400 font-medium">{feature.description}</p>
-//               </div>
-//             </div>
-//           ))}
-//           <div className="md:col-span-2 bg-indigo-600 rounded-2xl p-0 shadow-sm flex flex-col md:flex-row overflow-hidden relative">
-//             <div className="p-8 md:w-1/2 flex flex-col justify-center z-10">
-//               <h3 className="font-bold text-white text-xl mb-2">Meet the Team</h3>
-//               <p className="text-sm text-indigo-100 font-medium mb-6">Dedicated professionals who take pride in making your space shine.</p>
-//               <button className="bg-white text-indigo-600 w-fit px-5 py-2.5 rounded-lg text-sm font-semibold shadow-sm hover:bg-slate-50 transition-colors">
-//                 Join Our Team
-//               </button>
-//             </div>
-//             <div className="md:w-1/2 relative h-48 md:h-auto">
-//               <img
-//                 alt="Team member"
-//                 className="w-full h-full object-cover"
-//                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGQmeOEyJGcQzLiLYzjRlxylP1chW2jo6eyYKuY0ZRRj1N11gHnA6VSkIMK0cYwpfIBX3salf0mOpRvxq0oV7NHoo6SKEeQw52GBgI47PclU7PKe5j3QYFuQnNXuPX661E-IYnoMppPyFS2ebH6K37rpi6HGoyjmwbBNKcQIE93st57JYAuLPmvebijh_AKrDuMjLq9jwINFwTviU_LL5SdIfyku0p0MSt1Dm38OsDP4YH28_Q2_RJsk9TNoJ7yLnoarHSf0JNF9PT"
-//               />
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// function FAQSection() {
-//   return (
-//     <section className="py-20 px-6 lg:px-8 max-w-3xl mx-auto" id="faq">
-//       <div className="text-center mb-10">
-//         <h2 className="text-3xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
-//       </div>
-//       <div className="space-y-4">
-//         {faqs.map((faq) => (
-//           <details key={faq.question} className="group bg-white rounded-2xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
-//             <summary className="flex items-center justify-between cursor-pointer p-6 font-bold text-slate-800 text-lg">
-//               {faq.question}
-//               <ChevronDown className="w-5 h-5 text-slate-400 transition-transform duration-300 group-open:-rotate-180" />
-//             </summary>
-//             <div className="p-6 pt-0 text-sm text-slate-500 font-medium">{faq.answer}</div>
-//           </details>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
-
-// function CTASection() {
-//   return (
-//     <section className="py-24 relative overflow-hidden bg-white border-y border-slate-200">
-//       <div className="absolute inset-0 bg-linear-to-b from-slate-50 to-white z-0" />
-//       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
-//         <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Ready for a Sparkle?</h2>
-//         <p className="text-lg text-slate-500 font-medium mb-10 max-w-xl">
-//           Transform your space into a pristine haven today. Quick booking, transparent pricing.
-//         </p>
-//         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
-//           <Link
-//             to="/services"
-//             className="bg-indigo-600 text-white px-8 py-3.5 rounded-lg text-sm font-semibold shadow-sm hover:bg-indigo-700 transition-colors"
-//           >
-//             Book Now
-//           </Link>
-//           <Link
-//             to="/contact"
-//             className="bg-white border border-slate-200 text-slate-700 px-8 py-3.5 rounded-lg text-sm font-semibold shadow-sm hover:bg-slate-50 transition-colors"
-//           >
-//             Get a Quote
-//           </Link>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default function Home() {
-//   return (
-//     <>
-//       <Hero />
-//       <StatsSection />
-//       <ServicesSection />
-//       <FeaturesSection />
-//       <FAQSection />
-//       <CTASection />
-//     </>
-//   );
-// }
-
-
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
+import useStore from "../store/useStore";
 
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
@@ -357,8 +62,17 @@ const styles = `
 .hp-svc-rating { display:flex; align-items:center; gap:4px; background:#fefce8; border-radius:8px; padding:3px 8px; }
 .hp-svc-rating span { font-size:.78rem; font-weight:700; color:#92400e; }
 .hp-svc-desc { font-size:.84rem; color:#64748b; line-height:1.65; margin-bottom:16px; }
-.hp-svc-btn { width:100%; border:1.5px solid #e2e8f0; background:#f8fafc; border-radius:10px; padding:10px; font-family:'Syne',sans-serif; font-weight:600; font-size:.83rem; color:#334155; cursor:pointer; transition:all .2s; }
+.hp-svc-btn { width:100%; border:1.5px solid #e2e8f0; background:#f8fafc; border-radius:10px; padding:10px; font-family:'Syne',sans-serif; font-weight:600; font-size:.83rem; color:#334155; cursor:pointer; transition:all .2s; text-decoration:none; display:block; text-align:center; }
 .hp-svc-btn:hover { background:#e0f7fa; border-color:#06b6d4; color:#0891b2; }
+
+/* ── REVIEWS ── */
+.hp-reviews { padding:72px 24px; background:#fff; }
+.hp-rev-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.hp-rev-card { background:#f8fafc; border:1px solid #e8eef4; border-radius:20px; padding:24px; }
+.hp-rev-stars { color:#f59e0b; font-size:1rem; margin-bottom:10px; letter-spacing:2px; }
+.hp-rev-text { font-size:.87rem; color:#475569; line-height:1.7; margin-bottom:14px; font-style:italic; }
+.hp-rev-author { font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; color:#0f172a; }
+.hp-rev-service { font-size:.75rem; color:#94a3b8; margin-top:2px; }
 
 /* ── FEATURES ── */
 .hp-features { background:#0f172a; padding:72px 24px; }
@@ -375,7 +89,7 @@ const styles = `
 .hp-feat-cta-text { padding:36px; }
 .hp-feat-cta-text h3 { font-family:'Syne',sans-serif; font-weight:800; font-size:1.4rem; color:#fff; margin:0 0 10px; }
 .hp-feat-cta-text p  { font-size:.88rem; color:rgba(255,255,255,.7); margin:0 0 20px; line-height:1.65; }
-.hp-feat-cta-btn { background:#fff; color:#1e40af; border:none; padding:12px 22px; border-radius:12px; font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; cursor:pointer; }
+.hp-feat-cta-btn { background:#fff; color:#1e40af; border:none; padding:12px 22px; border-radius:12px; font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; cursor:pointer; text-decoration:none; display:inline-block; }
 .hp-feat-cta-img { height:200px; }
 .hp-feat-cta-img img { width:100%; height:100%; object-fit:cover; }
 
@@ -408,6 +122,7 @@ const styles = `
   .hp-svc-grid { grid-template-columns:1fr 1fr; }
   .hp-feat-grid { grid-template-columns:1fr 1fr; }
   .hp-feat-cta { grid-column:1/-1; }
+  .hp-rev-grid { grid-template-columns:1fr 1fr; }
 }
 @media(max-width:768px){
   .hp-band-inner { grid-template-columns:repeat(2,1fr); }
@@ -416,6 +131,7 @@ const styles = `
   .hp-feat-cta  { grid-template-columns:1fr; }
   .hp-feat-cta-img { height:160px; }
   .hp-pills { grid-template-columns:1fr; }
+  .hp-rev-grid { grid-template-columns:1fr; }
 }
 @media(max-width:480px){
   .hp-band-inner { grid-template-columns:1fr 1fr; gap:12px; }
@@ -423,10 +139,10 @@ const styles = `
 }
 `;
 
-const services = [
-  { title:"Home Deep Cleaning", price:"₹3,999", rating:"4.9", desc:"Complete top-to-bottom home cleaning with eco-friendly products and trained staff.", img:"https://images.pexels.com/photos/6195124/pexels-photo-6195124.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" },
-  { title:"Office Cleaning",     price:"₹6,499", rating:"4.8", desc:"Professional workspace cleaning to maintain a hygienic and productive environment.", img:"https://images.pexels.com/photos/6197108/pexels-photo-6197108.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" },
-  { title:"Sofa Steam Cleaning", price:"₹2,499", rating:"4.9", desc:"Deep steam cleaning for sofas and upholstery to restore like-new freshness.", img:"https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" },
+const FALLBACK_SERVICES = [
+  { id:'1', title:"Home Deep Cleaning", price:3999, description:"Complete top-to-bottom home cleaning with eco-friendly products and trained staff.", image:"https://images.pexels.com/photos/6195124/pexels-photo-6195124.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" },
+  { id:'2', title:"Office Cleaning",     price:6499, description:"Professional workspace cleaning to maintain a hygienic and productive environment.", image:"https://images.pexels.com/photos/6197108/pexels-photo-6197108.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" },
+  { id:'3', title:"Sofa Steam Cleaning", price:2499, description:"Deep steam cleaning for sofas and upholstery to restore like-new freshness.", image:"https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" },
 ];
 
 const bandStats = [
@@ -437,7 +153,7 @@ const bandStats = [
 ];
 
 const faqs = [
-  { q:"How can I book a cleaning service?",   a:"You can book online through our website form, or call us directly on +91 9458606691 or +91 8796026236." },
+  { q:"How can I book a cleaning service?",   a:"You can book online through our website booking form, or call us directly on +91 9458606691 or +91 8796026236." },
   { q:"Do you provide same day service?",     a:"Yes, same-day service is available depending on your location and slot availability." },
   { q:"Are your cleaners verified?",          a:"All staff are trained, background-checked, and verified before joining our team." },
   { q:"What areas do you serve?",             a:"We serve across Delhi NCR including Rohini, Pitampura, Mangol Puri, and surrounding areas." },
@@ -446,6 +162,26 @@ const faqs = [
 
 export default function HomePage() {
   const highlights = useMemo(() => ["Verified Staff","Same Day Service","Eco-Friendly Products","Affordable Pricing"], []);
+  const { services: dbServices, reviews: dbReviews, fetchServices, fetchReviews } = useStore();
+
+  useEffect(() => {
+    fetchServices();
+    fetchReviews();
+  }, []);
+
+  // Use DB services if available, otherwise use fallback
+  const displayServices = dbServices.length > 0
+    ? dbServices.slice(0, 6).map(s => ({
+        id: s.id || s._id || '',
+        title: s.title,
+        price: s.price,
+        description: s.description,
+        image: (s as { image?: string }).image || 'https://images.pexels.com/photos/6195124/pexels-photo-6195124.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600',
+      }))
+    : FALLBACK_SERVICES;
+
+  // Approved reviews from DB
+  const displayReviews = dbReviews.filter(r => (r as { approved?: boolean }).approved !== false).slice(0, 3);
 
   return (
     <>
@@ -505,7 +241,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* SERVICES */}
+        {/* SERVICES — Dynamic from DB */}
         <section className="hp-services">
           <div className="hp-sec-inner">
             <div className="hp-sec-head">
@@ -514,25 +250,50 @@ export default function HomePage() {
               <p>From regular home cleaning to specialized deep cleaning — we've got every corner covered.</p>
             </div>
             <div className="hp-svc-grid">
-              {services.map((s,i) => (
-                <div className="hp-svc-card" key={i}>
+              {displayServices.map((s,i) => (
+                <div className="hp-svc-card" key={s.id || i}>
                   <div className="hp-svc-img-wrap">
-                    <img className="hp-svc-img" src={s.img} alt={s.title} loading="lazy" />
-                    <div className="hp-svc-price">{s.price}</div>
+                    <img className="hp-svc-img" src={s.image} alt={s.title} loading="lazy" />
+                    <div className="hp-svc-price">₹{s.price?.toLocaleString()}</div>
                   </div>
                   <div className="hp-svc-body">
                     <div className="hp-svc-top">
                       <div className="hp-svc-name">{s.title}</div>
-                      <div className="hp-svc-rating"><span>★</span><span>{s.rating}</span></div>
+                      <div className="hp-svc-rating"><span>★</span><span>4.9</span></div>
                     </div>
-                    <div className="hp-svc-desc">{s.desc}</div>
-                    <button className="hp-svc-btn">Learn More →</button>
+                    <div className="hp-svc-desc">{s.description}</div>
+                    <a href="/booking" className="hp-svc-btn">Book Now →</a>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
+
+        {/* REVIEWS — Dynamic from DB */}
+        {displayReviews.length > 0 && (
+          <section className="hp-reviews">
+            <div className="hp-sec-inner">
+              <div className="hp-sec-head">
+                <span className="hp-sec-label">Reviews</span>
+                <h2>What Our Customers Say</h2>
+                <p>Real feedback from real customers across Delhi NCR.</p>
+              </div>
+              <div className="hp-rev-grid">
+                {displayReviews.map((r, i) => (
+                  <div className="hp-rev-card" key={(r as { id?: string }).id || i}>
+                    <div className="hp-rev-stars">
+                      {"★".repeat(Math.min(5, (r as { rating?: number }).rating || 5))}
+                    </div>
+                    <div className="hp-rev-text">"{(r as { comment?: string; text?: string }).comment || (r as { comment?: string; text?: string }).text}"</div>
+                    <div className="hp-rev-author">{(r as { name?: string; userName?: string }).name || (r as { name?: string; userName?: string }).userName}</div>
+                    <div className="hp-rev-service">{(r as { service?: string; serviceTitle?: string }).service || (r as { service?: string; serviceTitle?: string }).serviceTitle}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* FEATURES */}
         <section className="hp-features">
@@ -558,7 +319,7 @@ export default function HomePage() {
                 <div className="hp-feat-cta-text">
                   <h3>Ready to Book a Cleaning?</h3>
                   <p>Get your space spotless today. Quick booking, transparent pricing, trusted professionals.</p>
-                  <button className="hp-feat-cta-btn">Book Now →</button>
+                  <a href="/booking" className="hp-feat-cta-btn">Book Now →</a>
                 </div>
                 <div className="hp-feat-cta-img">
                   <img src="https://images.pexels.com/photos/6195072/pexels-photo-6195072.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Cleaning team" loading="lazy" />

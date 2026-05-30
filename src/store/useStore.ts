@@ -291,6 +291,30 @@ const useStore = create<AppState>((set, get) => ({
   // ── App Init ──────────────────────────────────────────────────────────────
   initializeApp: async () => {
     const { fetchServices, fetchReviews, fetchSettings } = get();
+
+    // Restore authenticated user from token stored in localStorage
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const data = await userApi.getProfile();
+        const user: User = {
+          id: data._id,
+          _id: data._id,
+          name: data.name,
+          email: data.email,
+          role: data.role,
+          phone: data.phone || '',
+          address: data.address || '',
+          createdAt: data.createdAt || new Date().toISOString(),
+        };
+        set({ user, isAuthenticated: true, token });
+      } catch {
+        // Token is invalid or expired – clear it
+        localStorage.removeItem('token');
+        set({ user: null, isAuthenticated: false, token: null });
+      }
+    }
+
     await Promise.allSettled([fetchServices(), fetchReviews(), fetchSettings()]);
   },
 }));

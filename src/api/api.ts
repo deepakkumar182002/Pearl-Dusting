@@ -50,6 +50,8 @@ export const bookingApi = {
   getAll: () => api.get('/bookings').then((r) => r.data),
   getUserBookings: () => api.get('/bookings/user').then((r) => r.data),
   create: (data: object) => api.post('/bookings', data).then((r) => r.data),
+  // Public booking – no auth required
+  createPublic: (data: object) => api.post('/bookings/public', data).then((r) => r.data),
   updateStatus: (id: string, status: string) =>
     api.put(`/bookings/${id}/status`, { status }).then((r) => r.data),
   cancel: (id: string) => api.put(`/bookings/${id}/cancel`).then((r) => r.data),

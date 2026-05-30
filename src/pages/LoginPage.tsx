@@ -1,106 +1,8 @@
-// import { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { motion } from 'framer-motion';
-// import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
-// import { MdCleaningServices } from 'react-icons/md';
-// import toast from 'react-hot-toast';
-// import useStore from '../store/useStore';
-
-// export default function LoginPage() {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [showPassword, setShowPassword] = useState(false);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const { login } = useStore();
-//   const navigate = useNavigate();
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     if (!email || !password) { toast.error('Please fill all fields'); return; }
-//     setIsLoading(true);
-//     try {
-//       const success = await login(email, password);
-//       if (success) {
-//         toast.success('Welcome back!');
-//         const store = useStore.getState();
-//         if (store.user?.role === 'admin') navigate('/admin');
-//         else navigate('/dashboard');
-//       } else {
-//         toast.error('Invalid email or password');
-//       }
-//     } catch {
-//       toast.error('Login failed. Please try again.');
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="pt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 py-10 sm:py-12 px-4 sm:px-6">
-//       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
-//         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-//           <div className="text-center mb-8">
-//             <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-//               <MdCleaningServices className="text-white text-2xl" />
-//             </div>
-//             <h1 className="text-2xl font-bold text-gray-900">Welcome Back</h1>
-//             <p className="text-sm text-gray-500 mt-1">Sign in to your account</p>
-//           </div>
-
-//           <form onSubmit={handleSubmit} className="space-y-4">
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-//               <div className="relative">
-//                 <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm" />
-//               </div>
-//             </div>
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-//               <div className="relative">
-//                 <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//                 <input type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm" />
-//                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-//                   {showPassword ? <FiEyeOff /> : <FiEye />}
-//                 </button>
-//               </div>
-//             </div>
-//             <div className="flex items-center justify-between text-sm">
-//               <label className="flex items-center gap-2 text-gray-600">
-//                 <input type="checkbox" className="rounded border-gray-300" /> Remember me
-//               </label>
-//               <button type="button" className="text-primary-600 hover:text-primary-700 font-medium" onClick={() => toast.success('Password reset link sent!')}>
-//                 Forgot Password?
-//               </button>
-//             </div>
-//             <button
-//               type="submit"
-//               disabled={isLoading}
-//               className="w-full py-3.5 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary-500/25 transition-all text-sm disabled:opacity-70 disabled:cursor-not-allowed"
-//             >
-//               {isLoading ? 'Signing in...' : 'Sign In'}
-//             </button>
-//           </form>
-
-//           <div className="mt-6 text-center">
-//             <p className="text-sm text-gray-500">
-//               Don't have an account? <Link to="/register" className="text-primary-600 font-semibold hover:text-primary-700">Sign Up</Link>
-//             </p>
-//           </div>
-
-//           <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-//             <p className="text-xs text-gray-500 font-medium mb-2">Demo Credentials:</p>
-//             <p className="text-xs text-gray-400">Admin: admin@sparkleclean.com / admin123</p>
-//             <p className="text-xs text-gray-400">User: john@example.com / password123</p>
-//           </div>
-//         </div>
-//       </motion.div>
-//     </div>
-//   );
-// }
-
-
-import { useState } from "react";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
+import useStore from '../store/useStore';
 
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
@@ -127,35 +29,13 @@ const styles = `
 .lp-eye-btn { position:absolute; right:16px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:#94a3b8; font-size:1rem; padding:0; line-height:1; }
 .lp-eye-btn:hover { color:#475569; }
 
-/* ROW */
-.lp-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
-.lp-remember { display:flex; align-items:center; gap:8px; font-size:.83rem; color:#64748b; cursor:pointer; }
-.lp-remember input { accent-color:#06b6d4; width:15px; height:15px; }
-.lp-forgot { background:none; border:none; font-size:.83rem; color:#0891b2; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; }
-.lp-forgot:hover { color:#0e7490; }
-
 /* SUBMIT */
 .lp-submit { width:100%; height:52px; background:linear-gradient(135deg,#06b6d4,#3b82f6); color:#fff; border:none; border-radius:14px; font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; cursor:pointer; transition:transform .2s,box-shadow .2s; box-shadow:0 4px 16px rgba(6,182,212,.28); }
 .lp-submit:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(6,182,212,.42); }
 .lp-submit:disabled { opacity:.65; cursor:not-allowed; transform:none; }
 
-/* BOTTOM LINKS */
-.lp-signup { text-align:center; margin-top:20px; font-size:.85rem; color:#64748b; }
-.lp-signup a { color:#0891b2; font-weight:600; text-decoration:none; }
-.lp-signup a:hover { text-decoration:underline; }
-
-/* DEMO BOX */
-.lp-demo { background:#f8fafc; border:1px solid #e8eef4; border-radius:12px; padding:16px 18px; margin-top:20px; }
-.lp-demo-title { font-family:'Syne',sans-serif; font-size:.75rem; font-weight:700; color:#64748b; margin:0 0 8px; }
-.lp-demo p { font-size:.77rem; color:#94a3b8; margin:0 0 3px; font-family:'DM Sans',sans-serif; }
-
-/* DIVIDER */
-.lp-divider { display:flex; align-items:center; gap:12px; margin:20px 0; }
-.lp-divider::before,.lp-divider::after { content:''; flex:1; height:1px; background:#e8eef4; }
-.lp-divider span { font-size:.78rem; color:#94a3b8; }
-
-/* SUCCESS toast */
-.lp-toast { background:#e0f7fa; border:1px solid #a5f3fc; border-radius:12px; padding:13px 18px; color:#0891b2; font-family:'Syne',sans-serif; font-weight:600; font-size:.875rem; text-align:center; margin-top:16px; }
+/* HINT */
+.lp-hint { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:14px 16px; margin-top:20px; font-size:.82rem; color:#166534; text-align:center; }
 
 @media(max-width:480px){
   .lp-card { padding:32px 22px; border-radius:22px; }
@@ -163,33 +43,56 @@ const styles = `
 `;
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPw, setShowPw] = useState(false);
-  const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const { login } = useStore();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) return;
+    if (!email || !password) {
+      toast.error('Please fill all fields');
+      return;
+    }
     setLoading(true);
-    await new Promise(r => setTimeout(r, 900));
-    setLoading(false);
-    setSuccess(true);
+    try {
+      const success = await login(email, password);
+      if (success) {
+        const store = useStore.getState();
+        if (store.user?.role === 'admin') {
+          toast.success('Welcome, Admin!');
+          navigate('/admin');
+        } else {
+          // Not an admin – log them out
+          useStore.getState().logout();
+          toast.error('Access denied. Admin credentials required.');
+        }
+      } else {
+        toast.error('Invalid email or password');
+      }
+    } catch {
+      toast.error('Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
       <style>{styles}</style>
-      <div className="lp-root">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="lp-root"
+      >
         <div className="lp-card">
-
           {/* Logo */}
           <div className="lp-logo">
-            <div className="lp-logo-icon">🧹</div>
-            <h1>Welcome Back</h1>
-            <p>Sign in to your Pearl Dusting account</p>
+            <div className="lp-logo-icon">🔐</div>
+            <h1>Admin Login</h1>
+            <p>Pearl Dusting Admin Panel</p>
           </div>
 
           {/* Form */}
@@ -198,48 +101,44 @@ export default function LoginPage() {
               <label>Email Address</label>
               <div className="lp-input-wrap">
                 <span className="lp-input-icon">✉️</span>
-                <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" required />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="admin@example.com"
+                  required
+                />
               </div>
             </div>
 
-            <div className="lp-form-group">
+            <div className="lp-form-group" style={{ marginBottom: 28 }}>
               <label>Password</label>
               <div className="lp-input-wrap">
                 <span className="lp-input-icon">🔒</span>
-                <input type={showPw?"text":"password"} value={password} onChange={e=>setPassword(e.target.value)} placeholder="••••••••" required style={{paddingRight:"46px"}} />
-                <button type="button" className="lp-eye-btn" onClick={()=>setShowPw(!showPw)}>
-                  {showPw?"🙈":"👁️"}
+                <input
+                  type={showPw ? 'text' : 'password'}
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  style={{ paddingRight: '46px' }}
+                />
+                <button type="button" className="lp-eye-btn" onClick={() => setShowPw(!showPw)}>
+                  {showPw ? '🙈' : '👁️'}
                 </button>
               </div>
             </div>
 
-            <div className="lp-row">
-              <label className="lp-remember">
-                <input type="checkbox" checked={remember} onChange={e=>setRemember(e.target.checked)} />
-                Remember me
-              </label>
-              <button type="button" className="lp-forgot">Forgot Password?</button>
-            </div>
-
             <button type="submit" className="lp-submit" disabled={loading}>
-              {loading ? "Signing in…" : "Sign In →"}
+              {loading ? 'Signing in…' : '🔐 Sign In to Admin Panel'}
             </button>
           </form>
 
-          {success && <div className="lp-toast">✅ Welcome back! Redirecting…</div>}
-
-          <div className="lp-signup">
-            Don't have an account? <a href="/register">Sign Up</a>
-          </div>
-
-          <div className="lp-demo">
-            <p className="lp-demo-title">Demo Credentials</p>
-            <p>Admin: admin@pearldusting.com / admin123</p>
-            <p>User: user@pearldusting.com / password123</p>
+          <div className="lp-hint">
+            🔒 This page is restricted to admin users only.
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
-
